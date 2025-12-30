@@ -27,6 +27,9 @@ urlpatterns = [
     # Core CRUD API routes
     path('', include(router.urls)),
 
+    # Custom URL for timetable export (alias for export_pdf)
+    path('timetables/<int:pk>/export/', views.TimetableViewSet.as_view({'get': 'export_pdf'}), name='timetable-export'),
+
     # JWT Authentication endpoints
     path('auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
